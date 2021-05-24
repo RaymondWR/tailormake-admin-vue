@@ -1,0 +1,8 @@
+<template>
+    <p>this is the dashboard</p>
+</template>
+
+<script>
+export default {
+}
+</script>

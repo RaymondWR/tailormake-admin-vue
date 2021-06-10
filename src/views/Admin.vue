@@ -27,34 +27,49 @@
         />
       </figure>
     </div>
-  </div>
 
+    <div class="col-12" align="center">
+      <figure style="background-color: #404a59;" class='mx-10'>
+        <v-chart
+          :option="map"
+          :init-options="initOptions"
+          ref="map"
+          autoresize
+        />
+      </figure>
+    </div>
+  </div>
 </template>
 
 <script>
 import PanelGroup from "./PanelGroup"
 import { mapState } from "vuex"
-import store from '../store/index' 
-
-import getBar from "../mock/bar"
-import pie from "../mock/pie"
-import theme from "../mock/theme.json"
+import store from '../store/index'
 
 import * as echarts from "echarts/core"
 import ECharts from 'vue-echarts'
 
 // import ECharts modules manually to reduce bundle size
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers'
-import { BarChart, PieChart } from 'echarts/charts'
+import { BarChart, PieChart, MapChart, EffectScatterChart, ScatterChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent, TitleComponent, ParallelComponent, GeoComponent, ToolboxComponent, LegendComponent, TimelineComponent, VisualMapComponent, DataZoomComponent, MarkPointComponent } from 'echarts/components'
 
-const { use, registerTheme } = echarts;
+import getBar from "../mock/bar"
+import pie from "../mock/pie"
+import map from "../mock/map";
+import theme from "../mock/theme.json"
+import chinaMap from "../mock/china.json";
+
+const { use, registerMap, registerTheme } = echarts;
 
 use([
   CanvasRenderer,
   SVGRenderer,
   BarChart,
   PieChart,
+  MapChart,
+  ScatterChart,
+  EffectScatterChart,
   GridComponent,
   TooltipComponent,
   TitleComponent,
@@ -69,6 +84,9 @@ use([
 ]);
 
 registerTheme("ovilia-green", theme);
+
+// registering map data
+registerMap("china", chinaMap);
 
 export default {
   components: {
@@ -88,6 +106,7 @@ export default {
         maskColor: "rgba(255, 255, 255, 0.4)"
       },
       pie,
+      map,
       seconds: -1
     }
   },
@@ -155,7 +174,7 @@ export default {
 
 <style>
 figure {
-  width: 500px;
+  width: 450px;
   height: 300px;
 }
 </style>

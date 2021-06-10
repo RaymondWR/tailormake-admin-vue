@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>this is the dashboard</p>
     <component :is="currentRole" />
   </div>
 </template>

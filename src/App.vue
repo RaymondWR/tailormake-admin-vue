@@ -5,7 +5,8 @@
       <router-link to="/dashboard">Dashboard</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/conatct">Contact Us</router-link> |
-      <router-link to="/cars/new">New Cars</router-link>
+      <router-link to="/cars/new">New Cars</router-link> |
+      <router-link to="/posts/new">New Posts</router-link>
     </div>
     <router-view />
   </div>

@@ -99,7 +99,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import carApi from "../../../apis/cars";
+import salepostApi from "../../../apis/saleposts";
 
 export default {
   data() {
@@ -147,11 +148,7 @@ export default {
       postForm.append('isPopular', this.isPopular)
       postForm.append('isHighlighted', this.isHighlighted)
 
-      const config = {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      }
-
-      axios.post("http://127.0.0.1:8000/saleposts/new", postForm, config)
+      salepostApi.postNewSalepost(postForm)
       .then((res) => {
         console.log("post request success >>>", res)
         this.onReset(null)
@@ -175,7 +172,7 @@ export default {
   },
 
   mounted() {
-    axios.get("http://127.0.0.1:8000/cars/list")
+    carApi.listAllCars()
     .then((res) => {
       if(res && [200, 201].includes(res.status)) {
         const carlist = res.data

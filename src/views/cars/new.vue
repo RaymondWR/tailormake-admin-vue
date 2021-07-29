@@ -181,7 +181,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import carApi from '../../../apis/cars';
 
 export default {
     data () {
@@ -216,8 +216,7 @@ export default {
     methods: {
       onSubmit(event) {
         event.preventDefault()
-        alert(JSON.stringify(this.car))
-        axios.post("http://127.0.0.1:8000/cars/new", this.car)
+        carApi.postNewCar(this.car)
         .then(function (response) {
           console.log(response);
           this.onReset();

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "sudo aws --region eu-west-1 --profile frontend-main-s3-deployer s3 sync ./dist s3://www.tailormake.co.uk --delete"
   },
   "dependencies": {
     "axios": "^0.21.1",
